@@ -1,5 +1,6 @@
 import React, { Component, createRef } from 'react'
-import './App.css';
+import './App.css'
+
 import Formulaire from "./Components/Formulaire";
 import Message from "./Components/Message";
 
@@ -29,16 +30,27 @@ class App extends Component {
     addMessage = message => {
         const messages = { ...this.state.messages}
         messages[`message-${Date.now()}`] = message
-        this.setState( { messages })
+        Object
+            .keys(messages)
+            .slice(0, -10)
+            .forEach(key => {
+                messages[key] = null
+            })
+
+        this.setState({messages})
     }
+
+    isUser = pseudo => pseudo === this.state.pseudo
     render() {
         const messages = Object
             .keys(this.state.messages)
             .map(key => (
-                <Message
-                    pseudo={this.state.messages[key].pseudo}
-                    message={this.state.messages[key].message}/>
-            ))
+                    <Message
+                        key={key}
+                        isUser={this.isUser}
+                        pseudo={this.state.messages[key].pseudo}
+                        message={this.state.messages[key].message}/>
+                        ))
 
         return (
             <div className="box">

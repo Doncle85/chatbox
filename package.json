@@ -13,6 +13,7 @@
     "react-rebase": "^1.0.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-transition-group": "^1.2.1",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
