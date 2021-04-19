@@ -3,10 +3,20 @@ import './App.css';
 import Formulaire from "./Components/Formulaire";
 import Message from "./Components/Message";
 
+//Firebase
+import base from './Components/Base'
+
 class App extends Component {
     state = {
         messages : {},
         pseudo: this.props.match.params.pseudo
+    }
+
+    componentDidMount() {
+        base.syncState('/', {
+            context: this,
+            state: 'messages'
+        })
     }
 
     addMessage = message => {
